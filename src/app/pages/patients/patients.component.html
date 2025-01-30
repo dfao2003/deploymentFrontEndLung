@@ -1,0 +1,47 @@
+<div class="contPri d-flex w-full">
+    <app-navbar2></app-navbar2>
+    <div class="contPatients w-100">
+      <div class="contNewPatient">
+        <div class="text-center">
+            <h1>Pacientes</h1>
+        </div>
+        <div class="contInput input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Buscar a un paciente..."
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Clear
+              </button>
+            </div>
+        </div>
+        <div class="contButton">
+            <button class="btn btn-primary ms-auto" onclick="location.href='/register_patient'">Registrar nuevo paciente</button>
+        </div>
+      </div>
+      <div class="contTablePatients d-flex justify-content-center p-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Cedula</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Fecha de Nacimiento</th>
+              <th scope="col">Sexo</th>
+              <th scope="col">Prediccion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients">
+              <td>{{patient.identification}}</td>
+              <td>{{patient.name}}</td>
+              <td>{{patient.last_name}}</td>
+              <td>{{patient.sex}}</td>
+              <td><a href="/show_predict">Ver Prediccion</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

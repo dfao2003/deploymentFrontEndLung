@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'deploymentFrontEndLung';
+
+  constructor(private router: Router){}
+
+  shouldHideNavbarAndFooter(): boolean {
+    const excludedRoutes = ['/login','/dashboardMedic','/patients']; // Rutas donde no se mostrarán
+    return excludedRoutes.includes(this.router.url);
+  }
 }

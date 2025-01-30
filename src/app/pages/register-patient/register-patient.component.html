@@ -1,0 +1,68 @@
+<div class="contPri d-flex w-full">
+    <app-navbar2></app-navbar2>
+    <div class="contComponent p-1 w-100 d-flex justify-content-center align-items-center">
+        <div class="card p-4 shadow" style="width: 100%; max-width: 500px;">
+            <div class="contTitle p-3 text-center">
+                <h5>Register information about patient</h5>
+            </div>
+            <div class="contPrediction d-flex flex-column p-2 gap-3">
+                <form [formGroup]="patientForm" (ngSubmit)="AddPatient()">
+                    <!-- Campo de Correo Electrónico -->
+                    <div class="mb-3">
+                        <label for="identification" class="form-label">Cedula</label>
+                        <input type="text" class="form-control" id="identification" formControlName="identification" [ngClass]="{ 'is-invalid': isFieldInvalid('identification') }" placeholder="Ingrese la cedula del paciente" required>
+                    </div>
+                    <div class="error" *ngIf="isFieldInvalid('identification')">
+                        La cedula es obligatorio y debe tener 10 caracteres.
+                    </div>
+
+                    <!-- Campo de Nombres -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{ 'is-invalid': isFieldInvalid('name') }" placeholder="Ingrese los nombre del paciente" required>
+                    </div>
+                    <div class="error" *ngIf="isFieldInvalid('name')">
+                        Los nombres son obligatorios.
+                    </div>
+
+                    <!-- Campo de Apellidos -->
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="last_name" formControlName="last_name" [ngClass]="{ 'is-invalid': isFieldInvalid('last_name') }"placeholder="Ingrese los apellidos del paciente" required>
+                    </div>
+
+                    <!-- Campo de Fecha -->
+                    <div class="mb-3">
+                        <label for="birthday" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="birthday" formControlName="birthday" [ngClass]="{ 'is-invalid': isFieldInvalid('birthday') }" required>
+                    </div>
+
+                    <!-- Campo de Sexo -->
+                    <div class="mb-3">
+                        <label for="sex" class="form-label">Seleccione el sexo del paciente</label>
+                        <select 
+                            class="form-select" 
+                            id="sex" 
+                            formControlName="sex" 
+                            [ngClass]="{ 'is-invalid': isFieldInvalid('sex') }"  
+                            aria-label="Seleccionar opción">
+                            <option value="" disabled selected>Elige una opción</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                        <div *ngIf="isFieldInvalid('sex')" class="invalid-feedback">
+                            Por favor seleccione una opción válida.
+                        </div>
+                    </div>
+                    <div class="contButton d-flex justify-content-center align-items-center">
+                         <!-- Botón de Enviar -->
+                        <button type="submit" class="btn btn-primary" [disabled]="patientForm.invalid">Registrar Paciente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
