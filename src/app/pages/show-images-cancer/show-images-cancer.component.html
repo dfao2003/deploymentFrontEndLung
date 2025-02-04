@@ -26,8 +26,19 @@
                     <markdown [data]="prediction?.report"></markdown>
                 </div>
             </div>
-        </div>    
-
+        </div>
+        <div class="card" style="width: 800px;">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Explicación con IA</h3>
+                <img *ngIf="prediction?.image_1_base64" [src]="'data:image/png;base64,' + prediction?.image_1_base64" alt="Imagen 1" style="width: 100%; height: auto;">
+            </div>
+        </div>
+        <div class="card" style="width: 800px;">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Explicación con IA</h3>
+                <img *ngIf="prediction?.image_2_base64" [src]="'data:image/png;base64,' + prediction?.image_2_base64" alt="Imagen 2" style="width: 100%; height: auto;">
+            </div>
+        </div>
         <div class="button mt-3 mb-4 d-flex justify-content-center">
             <a href="#" class="btn btn-primary">Descargar Reporte</a>
         </div>

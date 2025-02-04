@@ -1,6 +1,6 @@
 export class PatientImageReport {
-    image_1?: string | null;
-    image_2?: string | null;
+    image_1_base64?: string | null;
+    image_2_base64?: string | null;
     report?: string;
     patient?: number;
 }

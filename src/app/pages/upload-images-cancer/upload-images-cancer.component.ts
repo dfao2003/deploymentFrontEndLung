@@ -93,20 +93,22 @@ export class UploadImagesCancerComponent {
   
         // Extraer solo el contenido de la respuesta 'openai_explanation'
         const openaiExplanation = response.report; 
-        const image1_base64 = response.image1_base64;
-        console.log(image1_base64);
-        const image2_base64 = response.image1_base64;
-        console.log(image2_base64);
+        const image_1_base64 = response.image_1_base64;
+        console.log(image_1_base64);
+        const image_2_base64 = response.image_2_base64;
+        console.log(image_2_base64);
 
         // Creamos la predicción solo con el `id`
         this.prediction = {
-          image_1: image1_base64,
-          image_2: image2_base64,
+          image_1_base64: image_1_base64,
+          image_2_base64: image_2_base64,
           report: openaiExplanation, // Solo se guarda el 'content'
           patient: this.selectedPatient?.id ?? null // Solo se guarda el `id`
         };
   
         console.log('Enviando predicción:', this.prediction);
+
+        this.router.navigate(['/show_images_cancer']);
 
       },
       (error) => {
