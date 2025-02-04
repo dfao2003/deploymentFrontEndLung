@@ -7,6 +7,8 @@ import { UploadImagesComponent } from './pages/upload-images/upload-images.compo
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardMedicComponent } from './pages/dashboard-medic/dashboard-medic.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { UploadImagesCancerComponent } from './pages/upload-images-cancer/upload-images-cancer.component';
+import { ShowImagesCancerComponent } from './pages/show-images-cancer/show-images-cancer.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Redirige '/' a '/inicio'
@@ -16,7 +18,9 @@ const routes: Routes = [
     { path: 'upload_images', component: UploadImagesComponent},
     { path: 'login', component: LoginComponent},
     { path: 'dashboardMedic', component: DashboardMedicComponent},
-    { path: 'patients', component: PatientsComponent}
+    { path: 'patients', component: PatientsComponent},
+    { path: 'upload_images_cancer', component: UploadImagesCancerComponent},
+    { path: 'show_images_cancer', component: ShowImagesCancerComponent}
 ];
 
 @NgModule({

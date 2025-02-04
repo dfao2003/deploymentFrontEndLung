@@ -21,5 +21,4 @@ export class PatientService {
     return this.http.get<Patient[]>(url);
   }
 
-
 }

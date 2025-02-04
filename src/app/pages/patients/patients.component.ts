@@ -12,6 +12,8 @@ import { Patient } from '../../models/patient';
 export class PatientsComponent implements OnInit{
 
   patients: Patient[] = [];
+  filteredPatients: Patient[] = [];
+  searchText: string = '';
 
   constructor(private patientService: PatientService){
 
@@ -20,8 +22,22 @@ export class PatientsComponent implements OnInit{
   ngOnInit(): void {
     this.patientService.getPatients().subscribe((data: Patient[]) => {
       this.patients = data;
-      console.log(this.patients)
+      this.filteredPatients = data; // Inicialmente, todos los pacientes se muestran
     });
+  }
+
+  filterPatients(): void {
+    const search = this.searchText.toLowerCase();
+    this.filteredPatients = this.patients.filter(patient =>
+      (patient.name ?? '').toLowerCase().includes(search) ||
+      (patient.last_name ?? '').toLowerCase().includes(search) ||
+      (patient.identification !== undefined ? patient.identification.toString() : '').includes(this.searchText)
+    );
+  }
+
+  clearSearch(): void {
+    this.searchText = '';
+    this.filteredPatients = this.patients;
   }
 
 }

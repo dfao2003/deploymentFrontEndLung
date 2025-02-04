@@ -6,19 +6,18 @@
             <h1>Pacientes</h1>
         </div>
         <div class="contInput input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Buscar a un paciente..."
-            />
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">
-                Clear
-              </button>
-            </div>
-        </div>
-        <div class="contButton">
-            <button class="btn btn-primary ms-auto" onclick="location.href='/register_patient'">Registrar nuevo paciente</button>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar a un paciente..."
+            [(ngModel)]="searchText"
+            (input)="filterPatients()"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">
+              Clear
+            </button>
+          </div>
         </div>
       </div>
       <div class="contTablePatients d-flex justify-content-center p-4">
@@ -29,16 +28,16 @@
               <th scope="col">Nombres</th>
               <th scope="col">Fecha de Nacimiento</th>
               <th scope="col">Sexo</th>
-              <th scope="col">Prediccion</th>
+              <th scope="col">Predicción</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let patient of patients">
+            <tr *ngFor="let patient of filteredPatients">
               <td>{{patient.identification}}</td>
               <td>{{patient.name}}</td>
               <td>{{patient.last_name}}</td>
               <td>{{patient.sex}}</td>
-              <td><a href="/show_predict">Ver Prediccion</a></td>
+              <td><a href="/show_predict">Ver Predicción</a></td>
             </tr>
           </tbody>
         </table>

@@ -16,6 +16,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardMedicComponent } from './pages/dashboard-medic/dashboard-medic.component';
 import { Navbar2Component } from './pages/navbar2/navbar2.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { MarkdownModule } from 'ngx-markdown';
+import { UploadImagesCancerComponent } from './pages/upload-images-cancer/upload-images-cancer.component';
+import { ShowImagesCancerComponent } from './pages/show-images-cancer/show-images-cancer.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +32,16 @@ import { PatientsComponent } from './pages/patients/patients.component';
     LoginComponent,
     DashboardMedicComponent,
     Navbar2Component,
-    PatientsComponent
+    PatientsComponent,
+    UploadImagesCancerComponent,
+    ShowImagesCancerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MarkdownModule.forRoot(),
     ReactiveFormsModule
   ],
   providers: [],

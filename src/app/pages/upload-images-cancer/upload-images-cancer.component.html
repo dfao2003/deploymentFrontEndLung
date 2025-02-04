@@ -1,0 +1,66 @@
+<div class="conPrincipal d-flex w-full h-100">
+    <app-navbar2 class="bg-primary"></app-navbar2>
+    <div class="contComponent p-1 w-100 d-flex flex-column">
+      <div class="contTitle p-3 border-bottom">
+        <h3>Upload Images</h3>
+      </div>
+      <div class="contPrediction d-flex flex-column p-2 gap-3 flex-grow-1">
+        <div class="contSelectPatient">
+          <label for="basicSelect" class="form-label">Seleccione un paciente</label>
+          <select class="form-select" id="basicSelect" aria-label="Seleccionar opción" (change)="onSelectPatient($event)">
+            <option selected disabled>Elige un paciente</option>
+            <option *ngFor="let patient of patients" [value]="patient.identification">{{ patient.name }}</option>
+          </select>
+        </div>
+        
+        <div class="PatientDates" *ngIf="selectedPatient">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title">Datos del paciente</h5>
+              <p class="card-text"><strong>Identificación:</strong> {{ selectedPatient.identification }}</p>
+              <p class="card-text"><strong>Nombre:</strong> {{ selectedPatient.name }} {{ selectedPatient.last_name }}</p>
+              <p class="card-text"><strong>Fecha de nacimiento:</strong> {{ selectedPatient.birthday | date:'dd/MM/yyyy' }}</p>
+              <p class="card-text"><strong>Sexo:</strong> {{ selectedPatient.sex }}</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card p-3 text-center border border-primary rounded flex-grow-1" 
+             (dragover)="onDragOver($event)" 
+             (dragleave)="onDragLeave($event)" 
+             (drop)="onDrop($event)" 
+             [class.bg-light]="!isDragging" 
+             [class.bg-info]="isDragging">
+          <label for="fileInput" class="form-label fw-bold">Arrastra y suelta imágenes aquí o haz clic para seleccionarlas</label>
+          <input type="file" id="fileInput" class="d-none" (change)="onFileSelect($event)" accept="image/*" multiple>
+          <div class="drop-zone" (click)="triggerFileInput()">
+            <p class="m-0 text-muted">Suelta tus imágenes aquí</p>
+          </div>
+  
+          <!-- Contenedor con barra de desplazamiento -->
+          <div class="mt-3 overflow-auto" style="max-height: 200px;">
+            <h5 class="mb-2">Imágenes seleccionadas:</h5>
+            <ul class="list-group">
+              <li *ngFor="let file of selectedFiles" class="list-group-item">
+                {{ file.name }} ({{ file.size / 1024 | number: '1.0-2' }} KB)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Pantalla de carga -->
+      <div *ngIf="isLoading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Procesando imágenes, por favor espere...</p>
+      </div>
+  
+      <!-- Botón de generar reporte -->
+      <div class="button mt-3 mb-4 d-flex justify-content-center">
+        <button class="btn btn-primary" (click)="uploadImages()" [disabled]="isLoading">
+          Generar Reporte
+        </button>
+      </div>
+    </div>    
+  </div>
+  
